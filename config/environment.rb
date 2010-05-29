@@ -23,7 +23,7 @@ Rails::Initializer.run do |config|
   # To use Rails without a database, you must remove the Active Record framework
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
   #config.frameworks -= [:active_record]
-  config.gem 'mongomapper', :version => '>= 0.2.1'
+  #config.gem 'mongomapper'
   
 
   # Only load the plugins named here, in the order given. By default, all plugins 
