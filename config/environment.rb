@@ -1,4 +1,4 @@
-app_name = "rubyflow"
+app_name = "mongoflow"
 
 # Be sure to restart your server when you modify this file
 
@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
   # Skip frameworks you're not going to use (only works if using vendor/rails).
   # To use Rails without a database, you must remove the Active Record framework
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
-  config.frameworks -= [:active_record]
+  #config.frameworks -= [:active_record]
   config.gem 'mongomapper', :version => '>= 0.2.1'
   
 
@@ -44,7 +44,7 @@ Rails::Initializer.run do |config|
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
     :session_key => "_#{app_name}_session",
-    :secret      => 'youneedtochangethistosomethingelsethankyouverymuch'
+    :secret      => '3wmw3nt2t0wnt0hAv3qdr1nK'
   }
 
   # Use the database for sessions instead of the cookie-based default,
