@@ -146,7 +146,7 @@ BODY.inner .entry {
   margin-top: 0px;
   height: 36px;
   background-color: #412919;
-  border-bottom: 14px solid #c00;
+  border-bottom: 14px solid #F6D9A1;
   margin-bottom: 12px;
 }
 
@@ -157,7 +157,7 @@ BODY.inner .entry {
 }
 
 #header H1 {
-  color: #c00;
+  color: #FFFFFF;
   font-size: 32px;
   letter-spacing: -1px;
   position: absolute;
