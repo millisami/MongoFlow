@@ -23,4 +23,5 @@ sidebar: |-
   <p>This site currently has a SQL backend but I am aiming to migrate to MongoDB once Heroku comes out of MongoHQ beta.</p>
   <h3>Who?</h3><p>MongoFlow was built by <a href="http://twitter.com/brainscott">Brian Scott</a>, but is ultimately a community site for MongoDB and everything related.</p>
   <p><small>This site is influenced by <a href="http://www.rubyflow.com/">RubyFlow</a>. I thank <a href="http://www.twitter.com/peterc">Peter Cooper</a> for suppling the codebase via Github.</small></p>
+  <p>Follow <a href="http://www.twitter.com/mongoflow">MongoFlow</a> on Twitter!</p>
   <p><a href="http://feeds.feedburner.com/Mongoflow"><img src="http://feeds.feedburner.com/mongoflow?bg=cc0000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a></p>
