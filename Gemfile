@@ -14,7 +14,8 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-rails', ">=2.0.0.beta.16"
   gem 'watchr'
   gem 'rev'
-  gem 'rspec-rails', ">=2.0.0.beta.16"
+  gem 'shoulda'
 end

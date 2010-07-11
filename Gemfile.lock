@@ -109,6 +109,7 @@ GEM
       ruby-debug-base (~> 0.10.3.0)
     ruby-debug-base (0.10.3)
       linecache (>= 0.3)
+    shoulda (2.11.1)
     thor (0.13.7)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
@@ -138,5 +139,6 @@ DEPENDENCIES
   rev
   rspec-rails (>= 2.0.0.beta.16)
   ruby-debug
+  shoulda
   unicorn
   watchr
