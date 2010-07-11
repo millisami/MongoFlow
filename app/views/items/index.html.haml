@@ -1,6 +1,8 @@
 = render :partial => 'items/paginator' if @page_number > 1
 - @items.each do |item|
-  %div{:class => cycle 'even', 'odd'}
+  %div{:class => cycle('even', 'odd')}
     .date= item.created_at.strftime("%B %d, %Y")
-= render :partial => 'item', :locals => { :item => item }
+
+  = render :partial => 'item', :locals => { :item => item }
+
 = render :partial => 'items/paginator'
