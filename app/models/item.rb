@@ -38,6 +38,14 @@ class Item
   def tag_array
     tags.split(/\s+/)
   end
+
+  class << self
+    def reverse_chronological(opts = {})
+      opts[:limit] ||= 25
+      all.limit(opts[:limit]).order_by(:created_at.desc)
+    end
+
+  end
   
   def self.find_all_for_all_tags(tags, options = {})
     find(:all, { :conditions => [[*tags].collect { "tags LIKE ?" }.join(" AND "), *[*tags].collect { |a| "%:#{a} %" }] }.merge(options))
