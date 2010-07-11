@@ -1,5 +1,6 @@
 class Item
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :title
   field :url
@@ -11,13 +12,13 @@ class Item
   field :byline
   field :stars_count
   field :spam_reports_count
-  field :created_at, :type => DateTime
-  field :updated_at
 
   # embedded_in :user, :inverse_of => :item
   # embeds_one :user
   embeds_many :comments
   embeds_many :ratings
+
+  referenced_in :user
   
   # serialize :metadata
   

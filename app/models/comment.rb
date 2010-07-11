@@ -1,5 +1,6 @@
 class Comment
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   # embedded_in :post, :inverse_of => :comment
   # belongs_to :user
