@@ -64,28 +64,10 @@ class ItemsController < ApplicationController
     @item = Item.new(params[:item])
     @item.created_at = DateTime.now
     
-    if user_signed_in?
-      @item.user = current_user
-    else
-      @item.content = @item.content.gsub(/((<a\s+.*?href.+?\".*?\")([^\>]*?)>)/, '\2 rel="nofollow" \3>')
-      @item.byline = "Anonymous Coward" if @item.byline.empty?
-      if @item.byline.length > 18
-        @item.errors.add("Byline")
-        render :action => 'new'
-        return
-      end
-    end
+    # @item.content = @item.content.gsub(/((<a\s+.*?href.+?\".*?\")([^\>]*?)>)/, '\2 rel="nofollow" \3>')
     
-    if @item.title.empty?
-      @item.title = @item.content.gsub(/\<[^\>]+\>/, '')[0...40] + "..."
-    end
-    
-    # unless user_signed_in?
-    #   unless Digest::SHA1.hexdigest(params[:captcha].upcase.chomp)[0..5] == params[:captcha_guide]
-    #     @item.errors.add("Word")
-    #     render :action => 'new'
-    #     return
-    #   end
+    # if @item.title.empty?
+    #   @item.title = @item.content.gsub(/\<[^\>]+\>/, '')[0...40] + "..."
     # end
 
     respond_to do |format|
