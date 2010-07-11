@@ -11,3 +11,4 @@ doc/*
 #db/sphinx/development/*
 Capfile
 .idea/*
+.rvmrc
