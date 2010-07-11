@@ -1,20 +1,20 @@
 class ItemsController < ApplicationController
-  before_filter :login_required, :except => [:show, :list_for_tag, :index, :search, :category, :new, :create]
-  before_filter :admin_required, :only => [:destroy]
-  before_filter :permission_required, :only => [:edit, :update]  
-  before_filter :do_pagination, :only => [:index, :list_for_tag, :list_for_tags, :search, :recently]
+  # before_filter :login_required, :except => [:show, :list_for_tag, :index, :search, :category, :new, :create]
+  # before_filter :admin_required, :only => [:destroy]
+  # before_filter :permission_required, :only => [:edit, :update]  
+  # before_filter :do_pagination, :only => [:index, :list_for_tag, :list_for_tags, :search, :recently]
   
   layout 'main'
   
-  # GET /items
-  # GET /items.xml
   def index
     @front_page = true
     @items_count = Item.count
-    @items = Item.find(:all, { :order => 'items.created_at DESC', :include => :user }.merge(@pagination_options))
+    # @items = Item.find(:all, { :order => 'items.created_at DESC', :include => :user }.merge(@pagination_options))
+    @items = Item.find(:all)
+    @page_number = 1
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @items }
       format.rss { render :layout => false }
     end
@@ -62,8 +62,9 @@ class ItemsController < ApplicationController
   # POST /items.xml
   def create
     @item = Item.new(params[:item])
+    @item.created_at = DateTime.now
     
-    if logged_in?
+    if user_signed_in?
       @item.user = current_user
     else
       @item.content = @item.content.gsub(/((<a\s+.*?href.+?\".*?\")([^\>]*?)>)/, '\2 rel="nofollow" \3>')
@@ -79,13 +80,13 @@ class ItemsController < ApplicationController
       @item.title = @item.content.gsub(/\<[^\>]+\>/, '')[0...40] + "..."
     end
     
-    unless logged_in?
-      unless Digest::SHA1.hexdigest(params[:captcha].upcase.chomp)[0..5] == params[:captcha_guide]
-        @item.errors.add("Word")
-        render :action => 'new'
-        return
-      end
-    end
+    # unless user_signed_in?
+    #   unless Digest::SHA1.hexdigest(params[:captcha].upcase.chomp)[0..5] == params[:captcha_guide]
+    #     @item.errors.add("Word")
+    #     render :action => 'new'
+    #     return
+    #   end
+    # end
 
     respond_to do |format|
       if @item.save

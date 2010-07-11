@@ -1,9 +1,25 @@
-class Item < ActiveRecord::Base
-  belongs_to :user
-  has_many :comments
-	has_many :stars, :dependent => :destroy
+class Item
+  include Mongoid::Document
+
+  field :title
+  field :url
+  field :content
+  field :metadata
+  field :name
+  field :tags
+  field :comments_count
+  field :byline
+  field :stars_count
+  field :spam_reports_count
+  field :created_at, :type => DateTime
+  field :updated_at
+
+  # embedded_in :user, :inverse_of => :item
+  embeds_one :user
+  embeds_many :comments
+	embeds_many :stars, :dependent => :destroy
   
-  serialize :metadata
+  # serialize :metadata
   
   attr_protected :user_id
   
@@ -14,16 +30,16 @@ class Item < ActiveRecord::Base
   validates_length_of       :content, :within => 25..1200
   validates_format_of       :tags, :with => /^[\s\w\-\_\:]+$/, :if => :tags?, :message => 'are invalid (alphanumerics, hyphens and underscores only)'
   
-  def to_param
-    self[:name] && self[:name].length > 3 ? self[:name] : self[:id]
-  end
+  # def to_param
+  #   self[:name] && self[:name].length > 3 ? self[:name] : self[:id]
+  # end
   
   def tags=(tag_set)
     self[:tags] = tag_set.split.collect { |a| " :#{a} " }.join
   end
   
   def tags_before_type_cast
-    self[:tags].to_s.gsub(':', '').gsub(/[^\w\s\-\_\:].+?\s+/, ' ').gsub(/[^\w\s\-\_\:]/, '').strip.split(/\s+/).join(' ')
+    '' # self[:tags].to_s.gsub(':', '').gsub(/[^\w\s\-\_\:].+?\s+/, ' ').gsub(/[^\w\s\-\_\:]/, '').strip.split(/\s+/).join(' ')
   end
 
   def tags

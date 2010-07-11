@@ -14,7 +14,7 @@ class SessionController < ApplicationController
   end
   
   def destroy
-    self.current_user.forget_me if logged_in?
+    self.current_user.forget_me if user_signed_in?
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
@@ -42,7 +42,7 @@ class SessionController < ApplicationController
 
   def password_authentication(login, password)
     self.current_user = User.authenticate(login, password)
-    if logged_in?
+    if user_signed_in?
       successful_login
     else
       failed_login

@@ -1,17 +1,6 @@
-class User
+class User < ActiveRecord::Base
   include Mongoid::Document
-
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  field :name
-  field :remember_token_expires_at
-
-  validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
-
+  field :remember_token_expires_at, DateTime
   # t.string   "login"
   # t.string   "email"
   # t.string   "fullname"
@@ -26,10 +15,10 @@ class User
   # t.string   "identity_url"
   # t.integer  "approved_for_feed",                       :default => 0
   # t.datetime "last_checked_at"
-	# has_many :stars
-	# has_many :starred_items, :through => :stars, :source => :item
+	has_many :stars
+	has_many :starred_items, :through => :stars, :source => :item
   # Virtual attribute for the unencrypted password
-  # attr_accessor :password
+  attr_accessor :password
 
   validates_presence_of     :login #, :email
   validates_presence_of     :password,                   :if => :password_required?
@@ -45,7 +34,7 @@ class User
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  # attr_accessible :login, :email, :password, :password_confirmation, :identity_url, :url, :fullname
+  attr_accessible :login, :email, :password, :password_confirmation, :identity_url, :url, :fullname
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
@@ -60,7 +49,7 @@ class User
 
   # Encrypts the password with the user salt
   def encrypt(password)
-    self.class.encrypt(password, 'salt')
+    self.class.encrypt(password, salt)
   end
 
   def authenticated?(password)
