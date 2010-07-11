@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
     @front_page = true
     @items_count = Item.count
     # @items = Item.find(:all, { :order => 'items.created_at DESC', :include => :user }.merge(@pagination_options))
-    @items = Item.find(:all)
+    @items = Item.reverse_chronological
     @page_number = 1
 
     respond_to do |format|
@@ -69,7 +69,7 @@ class ItemsController < ApplicationController
     # if @item.title.empty?
     #   @item.title = @item.content.gsub(/\<[^\>]+\>/, '')[0...40] + "..."
     # end
-
+    
     respond_to do |format|
       if @item.save
         flash[:notice] = 'Item was successfully posted.'
