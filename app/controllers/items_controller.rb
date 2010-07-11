@@ -63,6 +63,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(params[:item])
     @item.created_at = DateTime.now
+    @item.user = current_user
     
     # @item.content = @item.content.gsub(/((<a\s+.*?href.+?\".*?\")([^\>]*?)>)/, '\2 rel="nofollow" \3>')
     
