@@ -12,3 +12,9 @@ group :development do
   gem 'unicorn'
   gem 'heroku', '1.9.10'
 end
+
+group :test do
+  gem 'watchr'
+  gem 'rev'
+  gem 'rspec-rails', ">=2.0.0.beta.16"
+end
