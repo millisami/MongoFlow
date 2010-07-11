@@ -33,7 +33,7 @@
     
     <p><%= f.text_area :content, :cols => 60, :rows => 8 %></p>
     
-    <%= render :partial => 'home/signup_captcha' unless user_signed_in? %>
+    <%# = render :partial => 'home/signup_captcha' unless user_signed_in? %>
     
     <p><%= f.submit "#{method == 'post' ? 'Post' : 'Update'} Item" %></p>
 </blockquote>
