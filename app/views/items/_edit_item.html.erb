@@ -1,11 +1,11 @@
-<% form_for(item) do |f| %>
-  <%= error_messages_for :item %>
+<%= form_for(item) do |f| %>
+  <%= form_errors(item) if item.errors %>
 
   <blockquote class="comment">
     <span class="a">&#147;</span><span class="b">&#148;</span>
 
   
-    <% if logged_in? %>
+    <% if user_signed_in? %>
       <p>Posting as <strong><%= current_user.login %></strong></p>
     <% else %>
       <p class="description">
@@ -18,8 +18,9 @@
     <% end %>
   
     <p>
-      <%= f.text_field :title %>
-      <label for="title" class="title">Title <span class="hint">(used for archive pages, etc.)</span></label>
+      <label for="title" class="title">Title <span class="hint">(used for archive pages, etc.)</span>
+        <%= f.text_field :title %>
+      </label>
     </p>
   
     <p class="formatting-help">
@@ -33,7 +34,7 @@
     
     <p><%= f.text_area :content, :cols => 60, :rows => 8 %></p>
     
-    <%= render :partial => 'home/signup_captcha' unless logged_in? %>
+    <%# = render :partial => 'home/signup_captcha' unless user_signed_in? %>
     
     <p><%= f.submit "#{method == 'post' ? 'Post' : 'Update'} Item" %></p>
 </blockquote>

@@ -14,14 +14,3 @@ uses_javascript: false
 # Edit expiration default: 60 (this means that editing ends 60 minutes after last update of item)
 # Set to 0 or omit to always allow editing of items by its owner
 edit_expiration_in_minutes: 60
-
-# ga: UA-2237791-7
-sidebar: |-
-  <h3>What?</h3><p>MongoFlow is a community driven MongoDB links site. Items are not added automatically, but chosen and summarized by the community, resulting in a higher quality of links than <a href="http://mongodb.reddit.com/">social bookmarking sites.</a></p>
-  <h3>How?</h3><p>Enjoy the links, comment or <a href="/items/new">make a post</a> of your own. You don't need to be signed in!</p>
-  <p><em>Note: If you're not signed in, your byline is unlinked and your links are made "nofollow" to prevent spam. You also get CAPTCHAed!</em></p>
-  <p>This site currently has a SQL backend but I am aiming to migrate to MongoDB once Heroku comes out of MongoHQ beta.</p>
-  <h3>Who?</h3><p>MongoFlow was built by <a href="http://twitter.com/brainscott">Brian Scott</a>, but is ultimately a community site for MongoDB and everything related.</p>
-  <p><small>This site is influenced by <a href="http://www.rubyflow.com/">RubyFlow</a>. I thank <a href="http://www.twitter.com/peterc">Peter Cooper</a> for suppling the codebase via Github.</small></p>
-  <p>Follow <a href="http://www.twitter.com/mongoflow">MongoFlow</a> on Twitter!</p>
-  <p><a href="http://feeds.feedburner.com/Mongoflow"><img src="http://feeds.feedburner.com/mongoflow?bg=cc0000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a></p>

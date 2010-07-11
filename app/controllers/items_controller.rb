@@ -1,20 +1,20 @@
 class ItemsController < ApplicationController
-  before_filter :login_required, :except => [:show, :list_for_tag, :index, :search, :category, :new, :create]
-  before_filter :admin_required, :only => [:destroy]
-  before_filter :permission_required, :only => [:edit, :update]  
-  before_filter :do_pagination, :only => [:index, :list_for_tag, :list_for_tags, :search, :recently]
+  # before_filter :login_required, :except => [:show, :list_for_tag, :index, :search, :category, :new, :create]
+  # before_filter :admin_required, :only => [:destroy]
+  # before_filter :permission_required, :only => [:edit, :update]  
+  # before_filter :do_pagination, :only => [:index, :list_for_tag, :list_for_tags, :search, :recently]
   
   layout 'main'
   
-  # GET /items
-  # GET /items.xml
   def index
     @front_page = true
     @items_count = Item.count
-    @items = Item.find(:all, { :order => 'items.created_at DESC', :include => :user }.merge(@pagination_options))
+    # @items = Item.find(:all, { :order => 'items.created_at DESC', :include => :user }.merge(@pagination_options))
+    @items = Item.reverse_chronological
+    @page_number = 1
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @items }
       format.rss { render :layout => false }
     end
@@ -62,31 +62,15 @@ class ItemsController < ApplicationController
   # POST /items.xml
   def create
     @item = Item.new(params[:item])
+    @item.created_at = DateTime.now
+    @item.user = current_user
     
-    if logged_in?
-      @item.user = current_user
-    else
-      @item.content = @item.content.gsub(/((<a\s+.*?href.+?\".*?\")([^\>]*?)>)/, '\2 rel="nofollow" \3>')
-      @item.byline = "Anonymous Coward" if @item.byline.empty?
-      if @item.byline.length > 18
-        @item.errors.add("Byline")
-        render :action => 'new'
-        return
-      end
-    end
+    # @item.content = @item.content.gsub(/((<a\s+.*?href.+?\".*?\")([^\>]*?)>)/, '\2 rel="nofollow" \3>')
     
-    if @item.title.empty?
-      @item.title = @item.content.gsub(/\<[^\>]+\>/, '')[0...40] + "..."
-    end
+    # if @item.title.empty?
+    #   @item.title = @item.content.gsub(/\<[^\>]+\>/, '')[0...40] + "..."
+    # end
     
-    unless logged_in?
-      unless Digest::SHA1.hexdigest(params[:captcha].upcase.chomp)[0..5] == params[:captcha_guide]
-        @item.errors.add("Word")
-        render :action => 'new'
-        return
-      end
-    end
-
     respond_to do |format|
       if @item.save
         flash[:notice] = 'Item was successfully posted.'

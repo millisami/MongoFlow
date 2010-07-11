@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment.item = @item
     
-    if logged_in?
+    if user_signed_in?
       @comment.user = current_user
     else
       @comment.byline = "Anonymous Coward" if @comment.byline.empty?

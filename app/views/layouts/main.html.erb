@@ -22,7 +22,7 @@
   		<div id="stuff">
   		  <%= link_to 'Home', root_url %> | <a href="<%= APP_CONFIG[:rss_url] %>">RSS Feed</a> | 
   		  <%= link_to 'Post Item', new_item_path, :class => 'rubyred' %> |
-  		  <% if logged_in? %>
+  		  <% if user_signed_in? %>
   		    <%= link_to 'Recently', recently_items_url -%> |
   		    <%= link_to 'Log Out', logout_url %>
   		  <% else %>
@@ -33,12 +33,13 @@
   	
   	<div id="page">
   		<div id="content">
-      <% if flash[:notice] %><p class="message"><%= flash[:notice] %></p><% end %>
+      <% if flash[:notice] %><p class="message"><%= notice %></p><% end %>
+      <% if flash[:alert] %><p class="alert"><%= alert %></p><% end %>
 	    <%= yield %>
 		  </div>
 		  
 		  <div id="sidebar">
-				<%= APP_CONFIG[:sidebar] %>
+        <%= render :partial => 'layouts/sidebar' %>
 			</div><!-- sidebar -->
 			
 			<div class="float"></div><div class="floatcontainer"><div class="float"></div></div>
