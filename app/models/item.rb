@@ -6,7 +6,7 @@ class Item
   field :content
   field :metadata
   field :name
-  field :tags
+  field :tags, :type => Array, :default => []
   field :comments_count
   field :byline
   field :stars_count
@@ -15,9 +15,9 @@ class Item
   field :updated_at
 
   # embedded_in :user, :inverse_of => :item
-  embeds_one :user
+  # embeds_one :user
   embeds_many :comments
-	embeds_many :stars, :dependent => :destroy
+  embeds_many :ratings
   
   # serialize :metadata
   
@@ -33,18 +33,6 @@ class Item
   # def to_param
   #   self[:name] && self[:name].length > 3 ? self[:name] : self[:id]
   # end
-  
-  def tags=(tag_set)
-    self[:tags] = tag_set.split.collect { |a| " :#{a} " }.join
-  end
-  
-  def tags_before_type_cast
-    '' # self[:tags].to_s.gsub(':', '').gsub(/[^\w\s\-\_\:].+?\s+/, ' ').gsub(/[^\w\s\-\_\:]/, '').strip.split(/\s+/).join(' ')
-  end
-
-  def tags
-    tags_before_type_cast
-  end
   
   def tag_array
     tags.split(/\s+/)
