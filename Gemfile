@@ -11,6 +11,7 @@ group :development do
   gem 'rails3-generators'
   gem 'unicorn'
   gem 'heroku', '1.9.10'
+  gem 'mongrel'
 end
 
 group :test do
