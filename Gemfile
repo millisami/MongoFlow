@@ -1,6 +1,6 @@
 source :rubyforge
 
-gem 'rails', '3.0.0.beta4'
+gem 'rails', '3.0.0.beta'
 gem 'mongoid', '2.0.0.beta9'
 gem 'bson_ext', '1.0.1'
 gem 'devise', '1.1.rc2'
