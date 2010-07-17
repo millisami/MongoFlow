@@ -12,9 +12,9 @@ class SessionController < ApplicationController
     password_authentication(params[:login], params[:password])
     #end
   end
-  
+
   def destroy
-    self.current_user.forget_me if user_signed_in?
+    self.current_user.forget_me if user.signed_in?
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
