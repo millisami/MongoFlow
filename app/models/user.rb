@@ -6,11 +6,11 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  field :name
+  field :login
   field :remember_token_expires_at
 
-  validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
+ #validates_presence_of :login
+ #validates_uniqueness_of :name, :email, :case_sensitive => false
 
   validates_presence_of     :login #, :email
   validates_presence_of     :password,                   :if => :password_required?
