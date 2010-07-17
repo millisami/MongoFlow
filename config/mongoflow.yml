@@ -2,7 +2,7 @@ app_name: mongoflow
 app_title: MongoFlow
 default_title: "MongoFlow : Community Filtered MongoDB News"
 sub_title: "Community-maintained MongoDB News"
-app_url: http://mongoflow.heroku.com/
+app_url: http://mongoflow.com/
 rss_url: http://feeds.feedburner.com/Mongoflow
 meta_keywords: "mongo, Mongodb news, mongodb blog, mongodb, json"
 meta_author: "Brian Scott"
