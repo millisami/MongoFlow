@@ -12,3 +12,4 @@ doc/*
 Capfile
 .idea/*
 .rvmrc
+config/mongoid.yml
