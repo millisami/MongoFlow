@@ -4,5 +4,5 @@
 <div id="captcha_display"><% random_word = words[rand(words.size)] + post_words[rand(post_words.size)]; random_word.each_byte do |char| %><%= char.chr.upcase %><%= %Q{#{char.chr.upcase}} if rand(3) == 0 %><!-- <%= Time.now.to_i %> --><% end %></div><br />
 <label for="captcha">Enter The Word Displayed In <span style="background-color: #c00; color: #fff">WHITE ON RED</span> Above</label><br />
 <%= text_field_tag "captcha" %>
-<%= hidden_field_tag "captcha_guide", Digest::SHA1.hexdigest(random_word.upcase)[0..5] %>
+<%= hidden_field_tag "captcha_guide", Digest::SHA1.hexdigest(random_word.upcase)[0..3] %>
 </p>
