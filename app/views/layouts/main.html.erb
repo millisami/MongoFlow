@@ -23,7 +23,7 @@
   		  <%= link_to 'Home', root_url %> | <a href="<%= APP_CONFIG[:rss_url] %>">RSS Feed</a> | 
   		  <%= link_to 'Post Item', new_item_path, :class => 'rubyred' %> |
   		  <% if user_signed_in? %>
-  		    <%= link_to 'Recently', recently_items_url -%> |
+  		    <%= link_to 'Recently', items_url -%> |
   		    <%= link_to 'Log Out', logout_url %>
   		  <% else %>
   			  <%= link_to 'Sign Up', signup_url %> | <%= link_to 'Log In', login_url %>
