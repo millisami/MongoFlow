@@ -2,7 +2,7 @@
   .entry
     = auto_link(safe(item.content))
     Tags:
-    = link_to 'tag', tag_url('tag')
+    = link_to 'tag', tag_url(tag)
   .metadata
     Posted by #{user_link(item)}
     at #{item.created_at.strftime("%R")} &mdash;
